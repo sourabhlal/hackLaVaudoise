@@ -1,10 +1,12 @@
 $( document ).ready(function() {
 	responsiveVoice.setDefaultVoice("French Female");
-	
+	var transcript = "";
+	var oldTranscript = "";
 	try {
 		var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 		var recognition = new SpeechRecognition();
 		recognition.lang = 'fr-FR';
+		recognition.interimResults = false;
 		}
 		catch(e) {
 			console.error(e);
@@ -18,9 +20,19 @@ $( document ).ready(function() {
 	recognition.onresult = function(event) {
 		var current = event.resultIndex;
   		var transcript = event.results[current][0].transcript;
-		console.log(transcript)
+  		var response = parse(transcript, state);
+  		switch(state) {
+			case 0:
+				state = 1
+				break;
+			case 1:
+				state = 2
+				break;
+			default:
+				state = 0
+		};
+  		responsiveVoice.speak(response);
 	}
-
 
 
 	var state = 0;
@@ -34,23 +46,11 @@ $( document ).ready(function() {
 	console.log(obj);
 	$("#bot").on("click",function(){
 		console.log(state);
-		switch(state) {
-		case 0:
-			recognition.start();
-			//responsiveVoice.speak("Vous avez trois factures impayée pour le mois de juillet");
-			state = 0
-			break;
-		case 1:
-			//responsiveVoice.speak("votre chat est un chien");
-			state = 2
-			break;
-		default:
-			//responsiveVoice.speak("bonjour");
-			state = 0
-	};
+		recognition.start();
 	});
-
-	
-
 });
+
+function parse(audio, state) {
+	return audio;
+}
 
