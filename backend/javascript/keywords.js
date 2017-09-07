@@ -49,26 +49,26 @@
      },
 
      {
-         keywords: ['police', 'assurance', 'information'],
+         keywords: ['police', 'assurance', 'couvert', 'information', 'assuré'],
          getActionAndData: function(keywords, text) {
 
              var data = {view: VIEWS.info, filters:{}};
 
-             /*
-              var unpaid = ['impayé', 'impayés', 'à payer'];
-              var unpaidK = getKeyword(text, unpaid);
+              var panne = ['panne', 'essence'];
+              var panneK = getKeyword(text, panne);
 
-              if(unpaidK) {
-              data.filters.unpaid = true;
+              if(panneK) {
+                data.filters.panne = true;
               }
 
-              var late = ['retar'];
-              var lateK = getKeyword(text, late);
 
-              if(lateK) {
-              data.filters.late = true;
-              }
-              */
+             var accident = ['accident', 'crash'];
+             var accidentK = getKeyword(text, accident);
+
+             if(accidentK) {
+                 data.filters.accident = true;
+             }
+
 
              return data;
          }

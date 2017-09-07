@@ -108,9 +108,40 @@
                 <div class="panel panel-default">
                     <div class="panel-body text-center">
 
-                        <div class="info-text" >
+                        <div class="info-text">
 
 
+
+                            <div v-bind:class="getInfoClass('accident')">
+                                Par accident de la circulation, il faut entendre toute collision, choc contre
+                                un corps fixe ou mobile, renversement, sortie de route, incendie ou
+                                explosion, ayant pour effet d’immobiliser le véhicule sur le lieu de
+                                l’accident et de nécessiter un dépannage ou un remorquage dans un
+                                garage pour y effectuer les réparations nécessaires
+                            </div>
+
+                            <div v-bind:class="getInfoClass('panne')">
+                                Vaudoise Assistance organise et prend en charge le dépannage sur
+                                place et, si nécessaire, le remorquage du véhicule jusqu’au garage
+                                approprié le plus proche ou le transport du véhicule jusqu’au garage
+                                désigné par la personne assurée et proche de son domicile. Ces frais
+                                sont pris en charge intégralement.
+                            </div>
+
+                            <div v-bind:class="getInfoClass('general')">
+                                Tout véhicule de tourisme terrestre à moteur (voiture ou moto ou
+                                assimilés), d’un poids total autorisé en charge jusqu’à 3,5 t et maximum
+                                9 places, immatriculé en Suisse au nom du preneur Vaudoise
+                                Assurances ou à celui d’un membre de son ménage et assuré par la
+                                Vaudoise Assurances.
+                                Sont également couverts la remorque de moins de 350 kg à vide ou la
+                                caravane tractée par le véhicule assuré. Sont exclus les animaux
+                                transportés dans la remorque.
+                                Sont exclus les véhicules utilisés pour le transport de passagers à titre
+                                onéreux tels que taxis, ambulances, auto-écoles, corbillards, voitures de
+                                location, ainsi que les véhicules utilisés à des fins professionnelles ou
+                                assurés au nom d’une société.
+                            </div>
 
                         </div>
 
@@ -144,9 +175,12 @@
 
             <img v-if="message !== ''" id="speach-bubble" src="/public/img/speach.png" alt="">
 
-            <div v-if="notification.text !== ''" id="notification">
+            <div v-if="notification.type !== ''" id="notification">
                 <img id="speach-bubble-notif" src="/public/img/speach-flipped.png" alt="">
-                <span class="text">
+
+
+
+                <span v-if="notification.type == 1" class="text">
                 Je vois qu'une facture est à payer.
                     <a href="https://drive.google.com/uc?export=download&id=0BzPDsEf8775MN0N2Q21McUphdEk"
                        target="_blank"
@@ -154,6 +188,20 @@
                         <span class="glyphicon glyphicon-print"></span>
                         L'imprimer?
                     </a>
+                </span>
+
+
+                <span v-if="notification.type == 2" class="text">
+                Saviez-vous que vous étiez assuré contre les dégâts d'eaux?
+                     <a href="#"
+                        v-on:click="goToLinkDegatDeau()">
+                        En savoir plus
+                    </a>
+                </span>
+
+                <span v-if="notification.type == 3" class="text">
+                Besoin d'aide d'un conseiller?
+                    <a href="tel:+41795377062">Appelez votre agence.</a>
                 </span>
             </div>
 

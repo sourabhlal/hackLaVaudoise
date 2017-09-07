@@ -8,32 +8,43 @@ $(document).ready(function(){
     }, 1000);
 
     var nbMinutes = 0.05;
-    setTimeout(function() {
-        showNotif();
-    }, 1000 * 60 * nbMinutes);
+
+    showNotif(1, undefined, 1);
+    showNotif(3, 50, 2);
+
+    showNotif(6, 30, 3);
+
 
 });
 
 var assuranceLink = '/fr/particulier/nos-produits/mes-assurances-vehicules/assurances-voitures/moins-de-30-ans';
+var degatLink = '/fr/particulier/nos-produits/logement/menage';
+
 
 function goToVaudoisePage(link) {
     $('iframe').attr('src', 'https://www.vaudoise.ch/'+link);
 }
 
 
-var notif = {text:''};
+var notif = {type:''};
 
-function showNotif(text) {
-    notif.text = text;
+function showNotif(start, duration, type) {
+
     setTimeout(function() {
-        notif.text = '';
-    }, 1000 * 1000);
+        notif.type = type;
+    }, 1000 * start);
+
+    if(duration) {
+        setTimeout(function() {
+            notif.type = '';
+        }, 1000 * (start + duration));
+    }
 }
-var baseMessage = "Bonjour Philippe, je peux vous aider? ";
+var baseMessage = "Bonjour Philippe, puis-je vous aider? ";
 
 var notFoundMessage = "\nJe ne suis pas sûr d'avoir compris.";
 
-window.accountVue = new window.Vue({
+window.accountVue = new Vue({
        el: '#app-1',
        name: 'textSearch',
        data: function() {
@@ -43,7 +54,9 @@ window.accountVue = new window.Vue({
                VIEWS: VIEWS,
                billsAnswers: factures,
                filters:{
-                   bills: {}
+                   bills: {},
+                   infos: {}
+
                },
                message: baseMessage,
                showArm: false,
@@ -52,6 +65,25 @@ window.accountVue = new window.Vue({
        },
        delimiters: DELIMITERS,
        methods: {
+
+
+
+           getInfoClass: function(name) {
+
+               if(Object.keys(this.filters.infos).length == 0) {
+                   return '';
+               }
+
+                if(!this.filters.infos[name]) {
+                    return 'blurred';
+                }
+
+                return '';
+           },
+
+           goToLinkDegatDeau: function() {
+               goToVaudoisePage(degatLink);
+           },
 
            goToAssuranceLink: function() {
                goToVaudoisePage(assuranceLink);
@@ -66,7 +98,6 @@ window.accountVue = new window.Vue({
 
                if(!data) {
                    this.currentView = VIEWS.home;
-
                    return;
                }
 
@@ -76,6 +107,8 @@ window.accountVue = new window.Vue({
 
                if(data.view === VIEWS.bills) {
                    this.filters.bills = data.filters;
+               } else if(data.view === VIEWS.info) {
+                   this.filters.infos = data.filters;
                }
 
            },

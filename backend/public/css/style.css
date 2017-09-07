@@ -50,34 +50,35 @@ body {
 
 #speach-bubble {
   position: fixed;
-  right: 150px;
+  right: 130px;
   width: 200px;
-  bottom: 157px; }
+  bottom: 167px; }
 
 #notification {
   position: fixed;
-  right: 193px;
+  right: 165px;
   width: 200px;
-  height: 200px;
-  bottom: 82px; }
+  height: 80px;
+  bottom: 92px; }
   #notification img {
     width: 100%;
     position: absolute;
     z-index: 2;
     bottom: 0;
-    height: 95px; }
+    height: 120px; }
   #notification .text {
     z-index: 2;
     position: absolute;
-    bottom: 18px;
     width: 84%;
     margin-left: 8%;
-    line-height: normal; }
+    line-height: 1;
+    height: 100%;
+    top: 2px; }
 
 #message {
   position: fixed;
-  bottom: 202px;
-  right: 163px;
+  bottom: 212px;
+  right: 143px;
   width: 172px;
   height: 121px;
   z-index: 1;
@@ -146,3 +147,15 @@ iframe {
   animation-name: big;
   animation-duration: 1.5s;
   animation-iteration-count: infinite; }
+
+.assurance-img {
+  width: 100%; }
+
+.info-text {
+  text-align: justify;
+  max-height: 500px;
+  overflow-y: scroll; }
+  .info-text .blurred {
+    color: transparent;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    font-size: 80%; }
