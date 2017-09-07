@@ -7,15 +7,21 @@ $(document).ready(function(){
         $('#avatar-stuff-container').css('opacity', 1);
     }, 1000);
 
-    var nbMinutes = 0.05;
-
-    showNotif(1, undefined, 1);
-    showNotif(3, 50, 2);
-
-    showNotif(6, 30, 3);
+    $(document.body).on('keypress', function(e) {
+        if(e.which == 49) {
+            showNotif(0.1, 25, 1);
+        } else if (e.which == 50) {
+            showNotif(0.1, 25, 2);
+        } else if(e.which == 51) {
+            showNotif(0.1, 25, 3);
+        }
+    });
 
 
 });
+
+
+
 
 var assuranceLink = '/fr/particulier/nos-produits/mes-assurances-vehicules/assurances-voitures/moins-de-30-ans';
 var degatLink = '/fr/particulier/nos-produits/logement/menage';

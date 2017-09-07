@@ -69,11 +69,13 @@ body {
 }
 
 #notification {
+
   position: fixed;
-  right: 165px;
-  width: 200px;
+  right: 159px;
+  width: 203px;
   height: 80px;
-  bottom: 92px;
+  bottom: 70px;
+  z-index: 2;
 
   img {
     width: 100%;
