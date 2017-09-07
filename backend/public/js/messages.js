@@ -1,0 +1,1 @@
+var MESSAGES={};MESSAGES[VIEWS.bills]=function(i){if(i.bills)return i.bills.unpaid||i.bills.late?"Voulez-vous obtenir un délai pour le paiement?":"Voici vos factures. Avez-vous besoin d'autre chose?"},MESSAGES[VIEWS.sinistres]=function(){return"Voici la situation à propos de votre annonce de sinistre."};

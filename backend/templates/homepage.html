@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>baseHead}}
+    <title>Vaudoise assurance</title>
+
+</head>
+
+<body>
+
+
+    <iframe src="https://www.vaudoise.ch" frameborder="0" width="500px"></iframe>
+
+
+    <div id="app-1" class="container" style="opacity:0;">
+
+
+        <div id="avatar-stuff-container">
+
+
+
+            <div class="my-modal" id="bills-view" v-if="currentView == VIEWS.bills">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <div>
+                            <ul class="list-group">
+                                <li v-for="billsAnswer in billsFiltered"
+                                    class="list-group-item">
+                                    ${billsAnswer.title}
+                                    <span class="label"
+                                          v-bind:class="getBagdeClass(billsAnswer)"
+                                    >
+                                        <template v-if="billsAnswer.paid">Payée</template>
+                                        <template v-else="!billsAnswer.paid">À payer avant le 30.${billsAnswer.month}</template>
+                                    </span>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-modal" id="sinistre-view" v-if="currentView == VIEWS.sinistres">
+                <div class="panel panel-default">
+                    <div class="panel-body text-center">
+
+                        <h3 style="margin-top:0.7em;">
+                            Mon annonce de sinistre
+                        </h3>
+
+                        <a href="#" v-on:click="goToAssuranceLink()">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                            Plus d'info sur mon assurance</a>
+
+                        <hr>
+
+                        <div class="step done">
+
+                            Réception de la déclaration
+
+                        </div>
+
+                        <div class="arrow done">
+                            <span class="glyphicon glyphicon-arrow-down"></span>
+                        </div>
+
+                        <div class="step done">
+
+                            Ouverture du dosser (Numéro 344)
+
+                        </div>
+
+                        <div class="arrow done">
+                            <span class="glyphicon glyphicon-arrow-down"></span>
+                        </div>
+
+                        <div class="step done">
+
+                            Contact avec le réparateur
+
+                        </div>
+
+                        <div class="arrow">
+                            <span class="glyphicon glyphicon-arrow-down"></span>
+                        </div>
+
+                        <div class="step next-step">
+                            Réception des photos
+                        </div>
+
+                        <div class="arrow">
+                            <span class="glyphicon glyphicon-arrow-down"></span>
+                        </div>
+
+                        <div class="step">
+                            Règlement et liquidation
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="message">
+                ${message}
+            </div>
+
+            <img id="avatar" src="/public/img/avatar.png" alt="">
+
+            <div class="question-container">
+                <div class="">
+                    <div class="col-sm-10">
+                        <textarea
+                        v-on:input="questionChange"
+                        v-model="textSearch" class="form-control" name="" id="data-input-avatar" cols="30" rows="3"
+                        placeholder="Quelles sont mes factures impayées? Suis-je assuré contre les incendies?">
+                            </textarea>
+                    </div>
+                    <div class="col-sm-2">
+                        <button id="voice" class="btn btn-default">
+                         <img src="/public/img/voice.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <img v-if="message !== ''" id="speach-bubble" src="/public/img/speach.png" alt="">
+
+            <div v-if="notification.text !== ''" id="notification">
+                <img id="speach-bubble-notif" src="/public/img/speach-flipped.png" alt="">
+                <span class="text">
+                Je vois qu'une facture est à payer.
+                    <a href="https://drive.google.com/uc?export=download&id=0BzPDsEf8775MN0N2Q21McUphdEk"
+                       target="_blank"
+                       id="print" v-on:click="print">
+                        <span class="glyphicon glyphicon-print"></span>
+                        L'imprimer?
+                    </a>
+                </span>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    {{>baseJS}}
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
+    <script src="/public/js/libs/vue.js" type="text/javascript"></script>
+    <script src="/public/js/views.js"></script>
+    <script src="/public/js/factures.js"></script>
+    <script src="/public/js/messages.js"></script>
+    <script src="/public/js/keywords.js"></script>
+    <script src="/public/js/homepage_vue.js"></script>
+
+</body>
+</html>
