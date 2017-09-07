@@ -46,6 +46,32 @@
 
              return data;
          }
+     },
+
+     {
+         keywords: ['police', 'assurance', 'information'],
+         getActionAndData: function(keywords, text) {
+
+             var data = {view: VIEWS.info, filters:{}};
+
+             /*
+              var unpaid = ['impayé', 'impayés', 'à payer'];
+              var unpaidK = getKeyword(text, unpaid);
+
+              if(unpaidK) {
+              data.filters.unpaid = true;
+              }
+
+              var late = ['retar'];
+              var lateK = getKeyword(text, late);
+
+              if(lateK) {
+              data.filters.late = true;
+              }
+              */
+
+             return data;
+         }
      }
 
  ];

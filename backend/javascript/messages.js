@@ -15,3 +15,6 @@ MESSAGES[VIEWS.sinistres] = function() {
     return "Voici la situation à propos de votre annonce de sinistre.";
 };
 
+MESSAGES[VIEWS.info] = function() {
+   return 'Cela répond-il à la question?'
+};
