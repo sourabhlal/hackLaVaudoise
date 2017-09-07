@@ -1,7 +1,6 @@
 $( document ).ready(function() {
 	responsiveVoice.setDefaultVoice("French Female");
 	var transcript = "";
-	var oldTranscript = "";
 	try {
 		var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 		var recognition = new SpeechRecognition();
